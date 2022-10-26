@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 
 export const login = async (request, response) => {
   const { identifier, password, user_type } = request.body;
+  console.log(identifier, password, user_type);
   let user;
 
   try {
@@ -92,12 +93,10 @@ export const register = async (request, response) => {
       });
     }
 
-    response
-      .status(201)
-      .json({
-        isSuccessful: true,
-        user: { id: user._id, user_type: user.user_type },
-      });
+    response.status(201).json({
+      isSuccessful: true,
+      user: { id: user._id, user_type: user.user_type },
+    });
   } catch (error) {
     response
       .status(500)
