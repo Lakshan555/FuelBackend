@@ -6,7 +6,7 @@ import FuelStationRouter from './routers/fuel_station_router.js';
 import FuelQueueRouter from './routers/fuel_queue_router.js';
 
 
-const PORT = 8090;
+const PORT = process.env.PORT || 8000;
 const MONGO_URI = "mongodb+srv://admin:admin123@cluster0.dsqkbfi.mongodb.net/?retryWrites=true&w=majority";
 const app = express();
 
