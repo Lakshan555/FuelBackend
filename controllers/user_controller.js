@@ -8,7 +8,7 @@ export const login = async (request, response) => {
 
   try {
     if (user_type === "STATION_OWNER") {
-      user = await User.findOne({ user_name: identifier });
+      user = await User.findOne({ register_no: identifier });
     } else if (user_type === "VEHICLE_OWNER") {
       user = await User.findOne({ vehicle_number: identifier });
     }
