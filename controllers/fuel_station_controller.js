@@ -79,3 +79,16 @@ export const searchFuelStation = async (request, response) => {
         response.status(500).json({ isSuccessful: false });
     }
 };
+
+export const getAllStation = async (request, response) => {
+
+    try {
+        const fuelStations = await FuelStation.find({
+
+        })
+        response.json({ isSuccessful: true, fuelStations });
+
+    } catch (error) {
+        response.status(500).json({ isSuccessful: false });
+    }
+};
