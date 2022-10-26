@@ -81,7 +81,7 @@ export const searchFuelStation = async (request, response) => {
 };
 
 export const getAllStation = async (request, response) => {
-    console.log("huahuidh")
+
     try {
         const fuelStations = await FuelStation.find({
 
