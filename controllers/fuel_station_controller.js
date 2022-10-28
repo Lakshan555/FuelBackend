@@ -52,15 +52,34 @@ export const reduceFuelData = async (request, response) => {
   const { fuel_type, quantity } = request.body;
 
   try {
-    await FuelStation.updateOne(
-      { _id: station_Id, "fuel_details.fuel_type": fuel_type },
+
+    const ft = await FuelStation.findOne({
+      _id:station_Id
+
+    })
+
+   const fd = ft.fuel_details.filter(i => {
+      return i.fuel_type === fuel_type
+    })
+
+    console.log(fd[0].quantity)
+
+    await FuelStation.findOneAndUpdate(
+      { _id: station_Id },
       {
-        $set: { "fuel_details.$.quantity": fuel_details.quantity - quantity },
+        $set: {
+          "fuel_details.$[el].quantity":fd[0].quantity  - quantity,
+        },
+      },
+      {
+        arrayFilters: [{ "el.fuel_type": fuel_type }],
+        new: true,
       }
     );
 
     response.status(200).json({ isSuccessful: true });
   } catch (error) {
+    console.log(error);
     response.status(500).json({ isSuccessful: false });
   }
 };
