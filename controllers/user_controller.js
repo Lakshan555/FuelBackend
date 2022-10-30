@@ -31,6 +31,7 @@ export const login = async (request, response) => {
       user: { id: user._id, user_type: user.user_type },
     });
   } catch (error) {
+    console.log("login error",error)
     response
       .status(500)
       .json({ message: "Internal Server Error!", isSuccessful: false });
