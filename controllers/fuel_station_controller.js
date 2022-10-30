@@ -1,5 +1,6 @@
 import FuelStation from "../models/fuel_station_model.js";
 
+//add fuel station
 export const addFuelStation = async (request, response) => {
   const { owner_id, fuel_station_name, register_no } = request.body;
 
@@ -15,6 +16,7 @@ export const addFuelStation = async (request, response) => {
   }
 };
 
+//get fuel station
 export const getFuelDataByID = async (request, response) => {
   const { station_Id } = request.params;
 
@@ -26,6 +28,7 @@ export const getFuelDataByID = async (request, response) => {
   }
 };
 
+//update fuel station
 export const updateFuelData = async (request, response) => {
   const { station_Id } = request.params;
   let { fuel_details, arrived_time } = request.body;
@@ -47,6 +50,7 @@ export const updateFuelData = async (request, response) => {
   }
 };
 
+//Reduce fuel station
 export const reduceFuelData = async (request, response) => {
   const { station_Id } = request.params;
   const { fuel_type, quantity } = request.body;
@@ -104,3 +108,18 @@ export const getAllStation = async (request, response) => {
     response.status(500).json({ isSuccessful: false });
   }
 };
+
+
+//get one station
+exports.getOwnerFuelStation = async (req, res) => {
+  const { owner_id } = req.params;
+
+  try {
+      const fuelStation = await FuelStation.find({ owner_id });
+      res.json({ isSuccessful: true, fuelStation });
+
+  } catch (error) {
+      res.json({ isSuccessful: false });
+  }
+}
+
