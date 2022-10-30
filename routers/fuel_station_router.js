@@ -7,6 +7,7 @@ import {
     reduceFuelData,
     searchFuelStation,
     getAllStation,
+    getOwnerFuelStation
 } from '../controllers/fuel_station_controller.js';
 
 
