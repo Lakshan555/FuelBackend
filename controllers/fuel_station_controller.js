@@ -111,7 +111,7 @@ export const getAllStation = async (request, response) => {
 
 
 //get one station
-exports.getOwnerFuelStation = async (req, res) => {
+export const getOwnerFuelStation = async (req, res) => {
   const { owner_id } = req.params;
 
   try {
